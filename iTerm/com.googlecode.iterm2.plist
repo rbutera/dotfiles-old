@@ -16,6 +16,8 @@
 	<false/>
 	<key>CommandSelection</key>
 	<true/>
+	<key>CompactMinimalTabBarHeight</key>
+	<real>22</real>
 	<key>Control</key>
 	<integer>1</integer>
 	<key>CopyLastNewline</key>
@@ -3124,6 +3126,8 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>2B24AE96-657A-4E4C-8F1A-822569278706</string>
+	<key>DefaultTabBarHeight</key>
+	<real>24</real>
 	<key>DimBackgroundWindows</key>
 	<false/>
 	<key>DimInactiveSplitPanes</key>
@@ -6408,6 +6412,8 @@
 	<integer>3</integer>
 	<key>SavePasteHistory</key>
 	<false/>
+	<key>SeparateWindowTitlePerTab</key>
+	<true/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -6424,6 +6430,8 @@
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>1</integer>
 	<key>ThreeFingerEmulates</key>
