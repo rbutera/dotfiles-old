@@ -47,7 +47,18 @@ backup_brew() {
 	brew bundle dump
 }
 
+backup_secrets() {
+	for i in "${!secretFiles[@]}"; do
+		secret_file=${secretFiles[$i]}
+		echo "Copying $secret_file"
+		cp -Rvf "$HOME/.ssh/$secret_file" "$PWD/keys/$secret_file"
+		git secret add "./keys/$secret_file"
+	done
+	echo "Finished adding all secrets. Hiding now"
+	git secret hide
+}
+
 backup_main() {
-	initialCopy && backup_brew
+	initialCopy && backup_brew && backup_secrets
 	echo "Backup completed"
 }

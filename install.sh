@@ -62,7 +62,7 @@ do_aws() {
 		cp -Rvf "$HOME/.aws/config" ./backup/.aws/config
 	fi
 	rm -rf "$HOME/.aws/config"
-	ln -s "$HOME/.aws/config" ./.aws/.config
+	ln -s "$HOME/.aws/config" "$PWD/.aws/.config"
 }
 
 do_ssh() {
@@ -74,7 +74,7 @@ do_ssh() {
 	ln -s "$HOME/.ssh/config" "$PWD/.ssh/config"
 	rm -rfv "$HOME"/.ssh/config
 	ln -s "$HOME"/.ssh/config "$PWD"/.ssh/config
-	rsync --av --exclude='config' --exclude="$HOME/.ssh/config" "$PWD/.ssh/" "$HOME/.ssh/"
+	rsync -av --exclude='config' --exclude="$HOME/.ssh/config" "$PWD/.ssh/" "$HOME/.ssh/"
 	echo "SSH info copied"
 }
 

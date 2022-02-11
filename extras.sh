@@ -1,6 +1,6 @@
 install_extras() {
+	# install brew packages
 	# install starship
-	# install brew && packages
 	# install nodenv
 	# install latest node
 	# install yarn, pnpm
