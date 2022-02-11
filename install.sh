@@ -43,7 +43,6 @@ do_prezto() {
 		echo "Made a link from $HOME/.$file -> $PWD/$file"
 	done
 
-	echo "not yet implemented" && exit 1
 }
 
 do_config_dir() {
@@ -62,8 +61,8 @@ do_aws() {
 		mkdir ./backup/.aws/
 		cp -Rvf "$HOME/.aws/config" ./backup/.aws/config
 	fi
-	ln -s "$HOME"/.aws/config ./.aws/.config
-	echo "not yet implemented" && exit 1
+	rm -rf "$HOME/.aws/config"
+	ln -s "$HOME/.aws/config" ./.aws/.config
 }
 
 do_ssh() {
