@@ -4,7 +4,7 @@ install_extras() {
 	# install nodenv
 	# install latest node
 	# install yarn, pnpm
-	# install fzf, fzy, z
+	# install fzf, fzy, peco
 	# install exa, htop
 	# give instructions for switching to zsh
 }

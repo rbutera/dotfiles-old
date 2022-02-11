@@ -1,57 +1,7 @@
 #!/bin/bash
-
+source "./files.sh"
 source "./extras.sh"
 source "./secrets.sh"
-
-allDotfiles=(".enhancd" ".gitconfig" ".gvimrc" ".hgignore_global" ".iterm2" ".iterm2_shell_integration.zsh" ".kettle" ".npmrc" ".tmux.conf" ".tmux.conf.local" ".vimrc" ".zplug_plugins.zsh")
-config_directory_filenames=("gh" "hub" "iterm2" "karabiner/karabiner.json" "starship.toml")
-
-makeDirectoryIfNecessary() {
-	DIRECTORY=$1
-	if [[ ! -d "$DIRECTORY" ]]; then
-		echo "No $DIRECTORY directory found. Creating it".
-		mkdir -p "$DIRECTORY"
-	fi
-}
-
-copyDotConfigFiles() {
-	makeDirectoryIfNecessary "$PWD/.config"
-	makeDirectoryIfNecessary "$PWD/.config/karabiner"
-
-	config_dir="$HOME/.config"
-	destination_dir="$PWD/.config"
-
-	for i in "${!config_directory_filenames[@]}"; do
-		filename=${config_directory_filenames[$i]}
-		src_path="$config_dir/$filename"
-		dest_path="$destination_dir/$filename"
-		[[ -f "$src_path" ]] && cp -Rvf "$src_path" "$dest_path"
-	done
-}
-
-initialCopy() {
-	for i in "${!allDotfiles[@]}"; do
-		dotfilename=${allDotfiles[$i]}
-		original="$HOME/$dotfilename"
-		directory="$(echo "$PWD")"
-		destination="$directory/$dotfilename"
-		if [[ -f "$original" || -d "$original" ]]; then
-			echo "Copying $original"
-			cp -Rvf "$original" ./
-		else
-			echo "No file found for '$original'. Skipping copy."
-		fi
-	done
-
-	## copy public keys
-	makeDirectoryIfNecessary "$PWD/.ssh"
-	cp -Rvf "$HOME/.ssh/*.pub" "$PWD/.ssh/"
-	cp -Rvf "$HOME/.ssh/*public.gpg" "$PWD/.ssh/"
-
-	## make local directories if necessary
-	cp -Rvf
-
-}
 
 replaceSimpleFiles() {
 	mkdir ./backup
@@ -75,6 +25,24 @@ replaceSimpleFiles() {
 
 do_prezto() {
 	echo "Copy/installing prezto"
+	zsh_files=(".zprezto" ".zprezto-contrib" ".zshenv")
+	zsh_rc_files=("zshrc" "zpreztorc")
+	for i in "${!zsh_files[@]}"; do
+		file=${zsh_files[$i]}
+		echo "Removing original $file"
+		rm -rf "$HOME/$file"
+		ln -s "$HOME/$file" "$PWD/$file"
+		echo "Made a link from $HOME/$file -> $PWD/$file"
+	done
+
+	for i in "${!zsh_rc_files[@]}"; do
+		file=${zsh_rc_files[$i]}
+		echo "Removing original $file"
+		rm -rf "$HOME/.$file"
+		ln -s "$HOME/.$file" "$PWD/.zprezto/runcoms/$file"
+		echo "Made a link from $HOME/.$file -> $PWD/$file"
+	done
+
 	echo "not yet implemented" && exit 1
 }
 
@@ -85,7 +53,6 @@ do_config_dir() {
 		filename=$config_directory_filenames[$i]
 		ln -s "$HOME/.config/$filename" "$PWD/.config/$filename"
 	done
-	echo "not yet implemented" && exit 1
 }
 
 do_aws() {
@@ -104,10 +71,12 @@ do_ssh() {
 	mkdir "$HOME/.ssh"
 	mkdir ./backup/.ssh
 	cp -Rv "$HOME/.ssh/config" ./backup/.ssh/config
-	cp -Rv ./.ssh/
+	rm -rf "$HOME/.ssh/config"
+	ln -s "$HOME/.ssh/config" "$PWD/.ssh/config"
 	rm -rfv "$HOME"/.ssh/config
 	ln -s "$HOME"/.ssh/config "$PWD"/.ssh/config
-	echo "not yet implemented" && exit 1
+	rsync --av --exclude='config' --exclude="$HOME/.ssh/config" "$PWD/.ssh/" "$HOME/.ssh/"
+	echo "SSH info copied"
 }
 
 do_tmux() {
