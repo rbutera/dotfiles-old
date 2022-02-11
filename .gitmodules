@@ -7,3 +7,6 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/rbutera/prezto
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug
