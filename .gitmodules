@@ -13,3 +13,6 @@
 [submodule ".zprezto-contrib/zsh-z"]
 	path = .zprezto-contrib/zsh-z
 	url = https://github.com/agkozak/zsh-z
+[submodule ".zprezto"]
+	path = .zprezto
+	url = git@github.com:rbutera/prezto.git
