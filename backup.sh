@@ -62,3 +62,5 @@ backup_main() {
 	initialCopy && backup_brew && backup_secrets
 	echo "Backup completed"
 }
+
+backup_main
