@@ -1,0 +1,20 @@
+#! /bin/bash
+
+set -ex
+remotehost=$(hostname)
+localhost=mew
+
+cmd="code"
+
+while [ $# -gt 0 ]; do
+    if [ -f "$1" ]; then
+        cmd+=" --file-uri \"vscode-remote://ssh-remote+$remotehost$(greadlink -f "$1")\""
+    elif [ -d "$1" ]; then
+        cmd+=" --folder-uri \"vscode-remote://ssh-remote+$remotehost$(greadlink -f "$1")\""
+    else
+        cmd+=" $1"
+    fi
+    shift
+done
+
+exec ssh $localhost -q -t -x "exec zsh -l -c '$cmd'"
