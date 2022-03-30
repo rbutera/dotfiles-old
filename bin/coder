@@ -18,4 +18,3 @@ while [ $# -gt 0 ]; do
 done
 
 exec ssh $localhost -q -t -x "exec zsh -l -c '$cmd'"
-
