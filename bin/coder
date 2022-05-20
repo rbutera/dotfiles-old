@@ -4,7 +4,7 @@ set -ex
 remotehost=$(hostname)
 localhost=lugia
 
-cmd="code"
+cmd="code-insiders"
 
 while [ $# -gt 0 ]; do
     if [ -f "$1" ]; then
