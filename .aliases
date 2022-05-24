@@ -146,7 +146,7 @@ alias start_lexstep_nest_dump="echo 'initialising migration' && cd ~/dev/lexstep
 # Git stuff
 
 function gcap() {
-  g ca "$1" && git push
+  g ca "$@" && git push 
 }
 
 alias ls=' exa --group-directories-first'
@@ -156,3 +156,25 @@ alias lt=' ls --tree -D -L 2 -I ${TREE_IGNORE}'
 alias ltt=' ls --tree -D -L 3 -I ${TREE_IGNORE}'
 alias lttt=' ls --tree -D -L 4 -I ${TREE_IGNORE}'
 alias ltttt=' ls --tree -D -L 5 -I ${TREE_IGNORE}'
+
+function coderz() {
+  z $2;
+  echo "switched to $(PWD)";
+  coder "$1" "$PWD";
+}
+
+function open_dev_essentials() {
+  echo "Welcome back, Rai";
+  open /Applications/Visual\ Studio\ Code\ -\ Insiders.app;
+  open /Applications/Motion.app;
+  open /Applications/Todoist.app;
+  open /Applications/iTerm.app;
+  open /Applications/Slack.app;
+  open /Applications/Google\ Drive.app;
+  open /Applications/Spotify.app;
+  open /Applications/Dash.app;
+  open /Applications/Brave\ Browser.app;
+  open /Applications/Obsidian.app;
+  open /Applications/Fantastical.app;
+  open /Applications/Focus.app;
+}
