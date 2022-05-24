@@ -2,17 +2,17 @@
 
 set -ex
 remotehost=$(hostname)
-localhost=lugia
+localhost=$1
 
 cmd="code-insiders"
 
 while [ $# -gt 0 ]; do
-    if [ -f "$1" ]; then
-        cmd+=" --file-uri \"vscode-remote://ssh-remote+$remotehost$(greadlink -f "$1")\""
-    elif [ -d "$1" ]; then
-        cmd+=" --folder-uri \"vscode-remote://ssh-remote+$remotehost$(greadlink -f "$1")\""
+    if [ -f "$2" ]; then
+        cmd+=" --file-uri \"vscode-remote://ssh-remote+$remotehost$(greadlink -f "$2")\""
+    elif [ -d "$2" ]; then
+        cmd+=" --folder-uri \"vscode-remote://ssh-remote+$remotehost$(greadlink -f "$2")\""
     else
-        cmd+=" $1"
+        cmd+=" $2"
     fi
     shift
 done
