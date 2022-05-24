@@ -172,7 +172,7 @@ function open_dev_essentials() {
   open /Applications/Slack.app;
   open /Applications/Google\ Drive.app;
   open /Applications/Spotify.app;
-  open /Applications/Dash.app;
+  open /Applications/Setapp/Dash.app;
   open /Applications/Brave\ Browser.app;
   open /Applications/Obsidian.app;
   open /Applications/Fantastical.app;
