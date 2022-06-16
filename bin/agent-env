@@ -1,0 +1,2 @@
+SSH_AUTH_SOCK=/var/folders/l5/214spw_x0654sk69c8ftmwn40000gn/T//ssh-FRVbG5Fxs3oj/agent.18347; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=18349; export SSH_AGENT_PID;

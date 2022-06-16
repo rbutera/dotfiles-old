@@ -1,0 +1,34 @@
+#!/bin/bash
+export USER_KEY=uu54w63y3fdeoudnv28r9khjvtifjo
+export APP_TOKEN=aeez5ydqcgcxuqdmxu2tm85vtw95q7 
+
+source ~/dev/lexstep/dumps/remote-notification.sh;
+
+fix_permissions() {
+  echo "In $(pwd) \nFixing permissions..."
+  sudo chown -R $(whoami) ./
+  sudo chown -R rai ./
+  echo "... done!"
+}
+do_dump() {
+  echo "Doing dump"
+  cd ~/dev/lexstep/dumps || exit; 
+  fix_permissions;
+  git pull && sudo USER_KEY=uu54w63y3fdeoudnv28r9khjvtifjo APP_TOKEN=aeez5ydqcgcxuqdmxu2tm85vtw95q7 ~/dev/lexstep/dumps/main.sh full;
+  echo "finished dump sequence"
+  remote_notification "finished do_dump";
+}
+
+do_recommendations() {
+  cd ~/dev/lexstep/lexstep-nest || exit;
+  fix_permissions;
+  yarn;
+  NODE_ENV=dbtest yarn recommendations:test;
+  cd ~/dev/dumps || exit
+}
+
+main() {
+  echo 'initialising migration' && do_dump && do_recommendations;
+}
+
+main;
