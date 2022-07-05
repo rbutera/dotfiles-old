@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -141,7 +143,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-alias start_lexstep_nest_dump="echo 'initialising migration' && cd ~/dev/lexstep/dumps; git pull && sudo USER_KEY=uu54w63y3fdeoudnv28r9khjvtifjo APP_TOKEN=aeez5ydqcgcxuqdmxu2tm85vtw95q7 ~/dev/lexstep/dumps/main.sh"
+alias start_lexstep_nest_dump="echo 'initialising migration' && cd ~/dev/lexstep/dumps; git pull && sudo ./start.py full"
 
 # Git stuff
 

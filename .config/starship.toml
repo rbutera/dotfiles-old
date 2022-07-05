@@ -1,5 +1,13 @@
 [aws]
 disabled = true
 
+[package]
+display_private = true
 
-command_timeout = 1337
+[python]
+pyenv_version_name = false
+
+[sudo]
+disabled = false
+
+
